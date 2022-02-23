@@ -1,22 +1,49 @@
 import './styles/main.scss'
-//import example from './images/example.png'
-// Create heading node
-const heading = document.createElement('h1')
-heading.textContent = 'Interesting!'
+import 'dotenv/config' 
+import { createApi } from 'unsplash-js';
+import fetch from 'node-fetch';
+// const cats = require('./fetcher.js').catArray
 
+// console.log('Cristinas key', process.env.KEY)
 
-// Append heading node to the DOM
-// const app = document.querySelector('#root')
-// app.append(heading)
+const unsplash = createApi({
+    accessKey: process.env.KEY,
+    headers: { 'X-Custom-Header': 'foo' },
+    fetch
+  });
 
-// Create a class property without a constructor
-class Game {
-    name = 'Violin Charades'
+// import { catArray } from './fetcher.mjs'
+// const catArray = ['https://http.cat/100', 'https://http.cat/100', 'https://http.cat/100']
+
+const appendToElem = (url) => {
+    const img = document.createElement('img')
+    img.classList.add('image');
+    img.setAttribute('src', url);
+    document.querySelector('#gallery').appendChild(img);
   }
-  const myGame = new Game()
-  // Create paragraph node
-  const p = document.createElement('p')
-  p.textContent = `I like ${myGame.name}.`
 
-const app = document.querySelector('#root')
-app.append(heading, p)
+
+//   cats.forEach(elem => appendToElem(elem))
+// const img = document.createElement('img')
+//   img.classList.add('image');
+//   img.setAttribute('src', catArray[0]);
+//   document.querySelector('#gallery').appendChild(img);
+
+  const imageFetcher = () => {
+    unsplash.search.getPhotos({
+        query: 'cat',
+        page: 1,
+        perPage: 10,
+        color: 'green',
+        orientation: 'portrait',
+      }).then(test => {
+        test.response.results.forEach(elem => {
+          console.log('EACH ELEMENT', elem)
+          appendToElem(elem.urls.small); 
+        })
+        })
+  }
+
+  imageFetcher()
+
+  
