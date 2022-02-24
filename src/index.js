@@ -2,8 +2,9 @@ import './styles/main.scss'
 import { createApi } from 'unsplash-js';
 // import 'dotenv/config' 
 // import { imageFetcher } from './fetcher.js'
-
-const KEY = "qNAjqkwjYSvdsyctNjCYaqle-_2j7bnl7_a2y3PhDq4";
+import { KEY } from './key.js'
+// const KEY = "qNAjqkwjYSvdsyctNjCYaqle-_2j7bnl7_a2y3PhDq4";
+// console.log(KEY);
 
 const unsplash = createApi({
   accessKey: KEY,
@@ -18,7 +19,7 @@ const appendToElem = (url) => {
 
 const imageFetcher = () => {
   unsplash.search.getPhotos({
-      query: 'cat',
+      query: 'monkey',
       page: 1,
       perPage: 10,
       color: 'green',
