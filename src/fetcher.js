@@ -1,9 +1,8 @@
 import { createApi } from 'unsplash-js';
-// import { imageFetcher } from './fetcher.js'
-import { KEY } from './key.js'
+
 
 const unsplash = createApi({
-  accessKey: KEY,
+  accessKey: process.env.KEY,
 });
 
 export const appendToElem = (url) => {
