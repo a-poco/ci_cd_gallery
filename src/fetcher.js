@@ -1,41 +1,29 @@
-import 'dotenv/config' 
 import { createApi } from 'unsplash-js';
-// import fetch from 'node-fetch';
-
-// console.log('Cristinas key', process.env.KEY)
+// import { imageFetcher } from './fetcher.js'
+import { KEY } from './key.js'
 
 const unsplash = createApi({
-    accessKey: process.env.KEY,
-  });
+  accessKey: KEY,
+});
 
-
- const appendToElem = (url) => {
+export const appendToElem = (url) => {
+  console.log('TEST:', document.querySelector('div').length);
   const img = document.createElement('img')
   img.classList.add('image');
   img.setAttribute('src', url);
-  document.querySelector('#gallery').appendChild(img);
+  document.querySelector('div').appendChild(img);
 }
 
-//  const catArray = ['https://http.cat/100', 'https://http.cat/100', 'https://http.cat/100']
-
-
- export const imageFetcher = () => {
+export const imageFetcher = (query) => {
   unsplash.search.getPhotos({
-      query: 'cat',
+      query: query,
       page: 1,
       perPage: 10,
-      color: 'green',
-      orientation: 'portrait',
+      orientation: 'landscape',
     }).then(test => {
       test.response.results.forEach(elem => {
         console.log('EACH ELEMENT', elem)
-        // appendToElem(elem.urls.small); 
+        appendToElem(elem.urls.small); 
       })
       })
 }
-
-
-// imageFetcher();
-
-module.exports.appendToElem = appendToElem
-module.exports.catArray = catArray
