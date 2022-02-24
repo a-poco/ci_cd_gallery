@@ -6,7 +6,7 @@ const { JSDOM } = jsdom;
 const dom = new JSDOM('<!DOCTYPE html><html><head></head><body><div id="gallery">TESTESTTEST</div></body></html>');
 const { document } = dom.window;
 
-test.skip('should add 10 elements to div #gallery', () => {
+test.skip('should add 10 elements to div #gallery correct', () => {
   appendToElem('cats');
   const galleryLength = document.getElementsByTagName('img').length;
   expect(galleryLength).toBe(1);
