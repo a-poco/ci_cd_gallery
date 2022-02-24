@@ -1,12 +1,8 @@
-import './styles/main.scss'
-import { imageFetcher } from './fetcher.js';
+import './styles/main.scss';
+import { imageFetcher } from './fetcher';
 
-
-document.getElementById("searchButton").addEventListener("click", () => {
+document.getElementById('searchButton').addEventListener('click', () => {
   document.querySelector('#gallery').innerHTML = '';
-  const keyword = document.getElementById('searchField').value
-  imageFetcher(keyword)
-})
-
-
-
+  const keyword = document.getElementById('searchField').value;
+  imageFetcher(keyword);
+});
