@@ -1,13 +1,11 @@
 import 'dotenv/config' 
 import { createApi } from 'unsplash-js';
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch';
 
 // console.log('Cristinas key', process.env.KEY)
 
 const unsplash = createApi({
     accessKey: process.env.KEY,
-    headers: { 'X-Custom-Header': 'foo' },
-    fetch
   });
 
 
@@ -18,10 +16,10 @@ const unsplash = createApi({
   document.querySelector('#gallery').appendChild(img);
 }
 
- const catArray = ['https://http.cat/100', 'https://http.cat/100', 'https://http.cat/100']
+//  const catArray = ['https://http.cat/100', 'https://http.cat/100', 'https://http.cat/100']
 
 
- const imageFetcher = () => {
+ export const imageFetcher = () => {
   unsplash.search.getPhotos({
       query: 'cat',
       page: 1,
@@ -31,10 +29,13 @@ const unsplash = createApi({
     }).then(test => {
       test.response.results.forEach(elem => {
         console.log('EACH ELEMENT', elem)
-        appendToElem(elem.urls.small); 
+        // appendToElem(elem.urls.small); 
       })
       })
 }
+
+
+// imageFetcher();
 
 module.exports.appendToElem = appendToElem
 module.exports.catArray = catArray
