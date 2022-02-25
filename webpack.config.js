@@ -33,7 +33,8 @@ module.exports = {
     new CleanWebpackPlugin(),
     // Only update what has changed on hot reload
     new webpack.HotModuleReplacementPlugin(),
-    new Dotenv()
+    new Dotenv(),
+    new webpack.EnvironmentPlugin(['KEY'])
   ],
 
   module: {
