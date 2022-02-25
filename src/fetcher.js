@@ -12,14 +12,22 @@ export const appendToElem = url => {
 };
 
 export const imageFetcher = query => {
-  unsplash.search.getPhotos({
-    query,
-    page: 1,
-    perPage: 10,
-    orientation: 'landscape',
-  }).then(test => {
-    test.response.results.forEach(elem => {
-      appendToElem(elem.urls.small);
-    });
-  });
+  return fetch(`https://api.unsplash.com/search/photos/?client_id=${process.env.KEY}&query=${query}`)
+    .then(res => res.json())
+    .then(test => {
+      console.log(test)
+        test.results.forEach(elem => {
+          appendToElem(elem.urls.small);
+        })
+    })
+  // unsplash.search.getPhotos({
+  //   query,
+  //   page: 1,
+  //   perPage: 10,
+  //   orientation: 'landscape',
+  // }).then(test => {
+  //   test.response.results.forEach(elem => {
+  //     appendToElem(elem.urls.small);
+  //   });
+  // });
 };
