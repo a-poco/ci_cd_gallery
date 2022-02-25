@@ -1,9 +1,9 @@
 import './styles/main.scss';
 
-window.localStorage.clear()
+window.localStorage.clear();
 
 let state = {
-  images: []
+  images: [],
 };
 
 const createTemplate = currentState => {
@@ -38,27 +38,26 @@ const imageFetcher = query => fetch(`https://api.unsplash.com/search/photos/?cli
     updateState({ images: [...urlArray] });
   });
 
-document.getElementById('searchButton').addEventListener('click', () => {
-  document.querySelector('#gallery').innerHTML = '';
-  const keyword = document.getElementById('searchField').value;
-  window.localStorage.setItem(`${keyword}`, keyword)
-  // console.log(window.localStorage.entries())
-  imageFetcher(keyword);
-  historyGenerator();
-});
-
 const historyGenerator = () => {
   document.querySelector('#searchHistory').innerHTML = '';
   const histArr = [];
   for (const key in localStorage) {
     histArr.push(key);
   }
-  histArr.splice(-6, 6)
+  histArr.splice(-6, 6);
   histArr.forEach(elem => {
-    const el = document.createElement('option')
-    el.setAttribute('value', elem)
-    document.querySelector('#searchHistory').appendChild(el)
-  })
+    const el = document.createElement('option');
+    el.setAttribute('value', elem);
+    document.querySelector('#searchHistory').appendChild(el);
+  });
   // console.log(histArr)
-}
+};
 
+document.getElementById('searchButton').addEventListener('click', () => {
+  document.querySelector('#gallery').innerHTML = '';
+  const keyword = document.getElementById('searchField').value;
+  window.localStorage.setItem(`${keyword}`, keyword);
+  // console.log(window.localStorage.entries())
+  imageFetcher(keyword);
+  historyGenerator();
+});
