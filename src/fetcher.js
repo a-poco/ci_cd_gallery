@@ -15,10 +15,14 @@ export const imageFetcher = query => {
   return fetch(`https://api.unsplash.com/search/photos/?client_id=${process.env.KEY}&query=${query}`)
     .then(res => res.json())
     .then(test => {
-      console.log(test)
-        test.results.forEach(elem => {
-          appendToElem(elem.urls.small);
-        })
+      const urlArray = []
+      // console.log(test)
+      test.results.forEach(elem => {
+        urlArray.push(elem.urls.small)
+      })
+      console.log(urlArray)
+      update(urlArray);
+      // return test.results
     })
   // unsplash.search.getPhotos({
   //   query,

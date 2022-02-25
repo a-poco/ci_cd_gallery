@@ -34,7 +34,7 @@ module.exports = {
     // Only update what has changed on hot reload
     new webpack.HotModuleReplacementPlugin(),
     new Dotenv(),
-    new webpack.EnvironmentPlugin(['KEY'])
+    // new webpack.EnvironmentPlugin(['KEY'])
   ],
 
   module: {
