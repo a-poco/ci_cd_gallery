@@ -50,14 +50,12 @@ const historyGenerator = () => {
     el.setAttribute('value', elem);
     document.querySelector('#searchHistory').appendChild(el);
   });
-  // console.log(histArr)
 };
 
 document.getElementById('searchButton').addEventListener('click', () => {
   document.querySelector('#gallery').innerHTML = '';
   const keyword = document.getElementById('searchField').value;
   window.localStorage.setItem(`${keyword}`, keyword);
-  // console.log(window.localStorage.entries())
   imageFetcher(keyword);
   historyGenerator();
 });
